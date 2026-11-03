@@ -12,41 +12,44 @@ type HTTPServer interface {
 	GetApp() *fiber.App
 }
 
-type httpServer struct{
+type httpServer struct {
 	app *fiber.App
 }
 
-func NewHTTPServer() HTTPServer{
+func NewHTTPServer() HTTPServer {
 	app := fiber.New(fiber.Config{
-		CaseSensitive : true,
-		AppName : "BaseJudge API v1.0.0",
-		ServerHeader : "Fiber",
+		CaseSensitive: true,
+		AppName:       "BaseJudge API v1.0.0",
+		ServerHeader:  "Fiber",
 	})
 	return &httpServer{
-		app : app,
+		app: app,
 	}
 }
 
-func (s *httpServer) GetApp() *fiber.App{
+func (s *httpServer) GetApp() *fiber.App {
 	return s.app
 }
 
-func (s *httpServer) MountRoutes(){
-	s.app.Get("/", func (c fiber.Ctx) error{
+func (s *httpServer) MountRoutes() {
+	s.app.Get("/", func(c fiber.Ctx) error {
 		return c.SendString("Hello From the server")
 	})
+	s.app.Get("/health", func(c fiber.Ctx) error {
+		return c.SendString("ok")
+	})
+
 	v1 := s.app.Group("/v1")
 	api := v1.Group("/api")
 
-	api.Get("/",func (c fiber.Ctx) error{
+	api.Get("/", func(c fiber.Ctx) error {
 		return c.SendString("HELLO FROM API")
 	})
 }
 
-func (s *httpServer) Start(port string){
+func (s *httpServer) Start(port string) {
 	err := s.app.Listen(port)
-
-	if err != nil{
-		log.Fatal(err)
+	if err != nil {
+		log.Fatal("Failed to start http server", err)
 	}
 }
