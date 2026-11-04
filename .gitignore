@@ -1,3 +1,5 @@
 CONTRACT.MD
 AGENTS.md
-steps
+steps/
+plan/
+*.py
