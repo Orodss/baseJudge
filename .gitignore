@@ -3,3 +3,9 @@ AGENTS.md
 steps/
 plan/
 *.py
+.env
+.env.*
+!.env.example
+KEY.TXT
+.codex/
+graphify-out/
