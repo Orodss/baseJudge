@@ -149,7 +149,7 @@ For API naming conventions, refer to the following guide: [API Naming Convention
 
 # Pushing Changes
 
-After committing your changes, push them to your personal branch first. Your personal branch name should be your nickname. Subsequently, you can submit a pull request to the dev branch. The owner will merge the dev branch into the master branch once it passes all unit tests and is ready for deployment on VPS.
+After committing your changes, push them to your personal branch first. Your personal branch name should be your nickname. Open a pull request from that branch to `main`. A maintainer reviews and merges it after the required checks pass. Do not push directly to `main` unless explicitly instructed by a maintainer. See [CONTRIBUTING.md](CONTRIBUTING.md) for the complete contribution workflow.
 
 # References
 - [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
